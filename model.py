@@ -31,13 +31,23 @@ class INeuron:
 
         self.T1 = 50  # T1 is the time at which the step input rises
         self.spike_ts = np.zeros(len(self.timesteps))  # spike history
+        self.I = np.zeros(len(self.timesteps))         # current history
 
-        self.I = np.zeros(len(self.timesteps))  # Current history
+    def simulate(self, I=None):
+        """
+        :param I: Current mA, default I = 1mA
+        :return: None
 
-    def simulate(self, I=1.0):
+        Simulates a single neuron and drives it with I
+        """
+        if I is None:
+            self.I = [1.0] * len(self.timesteps)        # default I = 1.0
+        elif isinstance(I, float):
+            self.I = [I] * len(self.timesteps)          # user defined I
+        else:
+            self.I = I                                  # I vector
+
         for t in range(1, len(self.timesteps)):
-            if t > 50:
-                self.I[t] = I
 
             if self.v[t-1] < self.vt:
                 # calc membrane potential
@@ -54,15 +64,21 @@ class INeuron:
                 self.u[t] = self.u[t - 1] + self.d  # reset recovery
 
     def get_v(self):
+        """
+        :return: vector which accumulates time series V
+        """
         return self.v
 
     def get_timesteps(self):
+        """
+        :return: returns the time steps
+        """
         return self.timesteps
 
     def mean_spike_rate(self):
+        """
+        :return: Mean spike rate
+
+        Calculates the mean spike rate for the corresponding I value
+        """
         return sum(self.spike_ts[800:])/800
-
-
-
-
-
