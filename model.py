@@ -6,7 +6,7 @@ __license__ = "MIT"
 model.py: Definition of the izhhikevich neuron
 
 This is a python implementation of the Izhikevich Neuron Model
-Credits: Eugene M. Izhikevich
+Credits: Eugene M. Izhikevich (neuron_RS2.m)
 '''
 
 import numpy as np

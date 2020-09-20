@@ -4,7 +4,7 @@ __license__ = "MIT"
 
 '''
 This is a python implementation of the Izhikevich Neuron Model
-Credits: Eugene M. Izhikevich
+Credits: Eugene M. Izhikevich (neuron_RS2.m)
 '''
 import matplotlib.pyplot as plt
 import numpy as np
