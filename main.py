@@ -58,6 +58,7 @@ def q2(wBA=10, Ia=5.0):
     neuron_A = INeuron()
     neuron_A.simulate(I=Ia)
     for i in Ib:
+        # for graph comparison
         neuron_Q1 = INeuron()
         neuron_Q1.simulate(I=i)
         rq1.append(neuron_Q1.mean_spike_rate())
