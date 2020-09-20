@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-__author__ = "SHivchander Sudalairaj"
+__author__ = "Shivchander Sudalairaj"
 __license__ = "MIT"
 
 '''

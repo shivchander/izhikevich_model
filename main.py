@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-__author__ = "SHivchander Sudalairaj"
+__author__ = "Shivchander Sudalairaj"
 __license__ = "MIT"
 
 '''
@@ -32,13 +32,13 @@ def q1():
             axs[plt_num].set_ylabel("V_m")
             plt_num += 1
     plt.tight_layout()
-    plt.savefig('VvsI.png')
+    plt.savefig('VvsI.pdf')
     plt.clf()
     plt.plot(I, r)
-    plt.xlabel('Current (mA)')
+    plt.xlabel('Input (I)')
     plt.ylabel('Mean Spike Rate')
     plt.title('Mean Spike Rate (R) vs I')
-    plt.savefig('RvsI.png')
+    plt.savefig('RvsI.pdf')
     plt.clf()
 
 
@@ -55,13 +55,12 @@ def q2(wBA=10, Ia=5.0):
     plt_num = 0
     # Simulating Neuron A separately to obtain time series and using that as input for
     # separate simulation of Neuron B
+    neuron_A = INeuron()
+    neuron_A.simulate(I=Ia)
     for i in Ib:
         neuron_Q1 = INeuron()
         neuron_Q1.simulate(I=i)
         rq1.append(neuron_Q1.mean_spike_rate())
-
-        neuron_A = INeuron()
-        neuron_A.simulate(I=Ia)
 
         _Ib = i + (neuron_A.spike_ts * wBA)
         neuron_B = INeuron()
@@ -75,18 +74,20 @@ def q2(wBA=10, Ia=5.0):
             plt_num += 1
 
     plt.tight_layout()
-    plt.savefig('VvsI_2.png')
+    plt.savefig('VvsI_2.pdf')
     plt.clf()
-    plt.plot(Ib, rb, 'b-')
-    plt.plot(Ib, rq1, 'r--')
-    plt.xlabel('Current (mA)')
+    plt.plot(Ib, rb, 'b-', label="R_b")
+    plt.plot(Ib, rq1, 'r--', label="R")
+    plt.xlabel('Input (I)')
     plt.ylabel('Mean Spike Rate')
+    plt.legend(loc="upper left")
     plt.title('Mean Spike Rate (R) vs I')
-    plt.savefig('RvsI_2.png')
+    plt.savefig('RvsI_2.pdf')
     plt.clf()
 
 
 def main():
+    q1()
     q2()
 
 
